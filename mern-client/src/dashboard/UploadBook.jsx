@@ -20,7 +20,7 @@ const UploadBook = () => {
     const [selectedBookCategory,setSlectedBookCategory] = useState(bookCaregories[0]);
     
     const handleChangeSelectedValue = (event) => {
-        //console.log(event.target.value)
+      
         setSlectedBookCategory(event.target.value);
     } 
     const handleBookSubmit = (event) => {
@@ -32,7 +32,7 @@ const UploadBook = () => {
       const category = form.categoryName.value; 
       const bookDescription = form.bookDescription.value;
       const bookPdfUrl = form.bookPdfUrl.value;
-      console.log(bookTitle)
+      
       const bookObj = {
         bookTitle,authorName,imageUrl,category,bookDescription,bookPdfUrl
       }

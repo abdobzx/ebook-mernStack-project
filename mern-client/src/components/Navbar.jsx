@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaBlog, FaBarsStaggered, FaXmark } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../contects/AuthProvider';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+
+  const {user} = useContext(AuthContext);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -29,9 +33,7 @@ const Navbar = () => {
   const navItems = [
     { link: 'Home', path: '/' },
     { link: 'About', path: '/about' },
-    { link: 'Shop', path: '/shop' },
-    { link: 'Sell Your Book', path: '/admin/dashboard' },
-    { link: 'Blog', path: '/blog' },
+    { link: 'Shop', path: '/shop' }
   ];
 
   return (
@@ -51,11 +53,14 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="lg:flex items-center space-x-12 hidden">
-            {/* Hide the hamburger menu on larger screens */}
+          <div className="space-x-12 hidden lg:flex items-center">
+            
             <button>
               <FaBarsStaggered className="w-5 hover:text-blue-700" />
             </button>
+            {
+              user? user.email : ""
+            }
           </div>
 
           <div className="md:hidden">

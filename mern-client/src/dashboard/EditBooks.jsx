@@ -25,7 +25,7 @@ const bookCaregories = [ "Fiction",
 const [selectedBookCategory,setSlectedBookCategory] = useState(bookCaregories[0]);
 
 const handleChangeSelectedValue = (event) => {
-    //console.log(event.target.value)
+    
     setSlectedBookCategory(event.target.value);
 } 
 const handleUpdate = (event) => {
@@ -37,7 +37,6 @@ const handleUpdate = (event) => {
   const category = form.categoryName.value; 
   const bookDescription = form.bookDescription.value;
   const bookPdfUrl = form.bookPdfUrl.value;
-  console.log(bookTitle)
   const uploadBookObj = {
     bookTitle,authorName,imageUrl,category,bookDescription,bookPdfUrl
   }

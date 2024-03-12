@@ -1,30 +1,140 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 5000
-const cors = require('cors')
 
+const express = require('express');
+const cors = require('cors');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const fetch = require('node-fetch');
+require('dotenv').config();
+
+const app = express();
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-//wsZM7snqt2ma5kQg
-// mongo db
+const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, MONGODB_URI } = process.env;
+const base = 'https://api-m.sandbox.paypal.com';
 
-
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = "mongodb+srv://ebook-store:wsZM7snqt2ma5kQg@travel-app.igqp7kb.mongodb.net/?retryWrites=true&w=majority&appName=Travel-app";
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
+const client = new MongoClient(MONGODB_URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
   }
 });
+
+async function generateAccessToken() {
+  try {
+    if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
+      throw new Error('MISSING_API_CREDENTIALS');
+    }
+    const auth = Buffer.from(
+      PAYPAL_CLIENT_ID + ':' + PAYPAL_CLIENT_SECRET,
+    ).toString('base64');
+    const response = await fetch(`${base}/v1/oauth2/token`, {
+      method: 'POST',
+      body: 'grant_type=client_credentials',
+      headers: {
+        Authorization: `Basic ${auth}`,
+      },
+    });
+
+    const data = await response.json();
+    return data.access_token;
+  } catch (error) {
+    console.error('Failed to generate Access Token:', error);
+  }
+}
+
+async function handleResponse(response) {
+  try {
+    const jsonResponse = await response.json();
+    return {
+      jsonResponse,
+      httpStatusCode: response.status,
+    };
+  } catch (err) {
+    const errorMessage = await response.text();
+    throw new Error(errorMessage);
+  }
+}
+const createOrder = async (cart) => {
+  try {
+    const accessToken = await generateAccessToken();
+    const url = `${base}/v2/checkout/orders`;
+    
+    const payload = {
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: "100.00", // Adjust this based on the actual total from the cart
+          },
+        },
+      ],
+    };
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    return handleResponse(response);
+  } catch (error) {
+    console.error("Error creating order:", error);
+    throw error;  // Ensure that the error is propagated to the calling code
+  }
+};
+
+app.post("/api/orders", async (req, res) => {
+  try {
+    const { cart } = req.body;
+    const { jsonResponse, httpStatusCode } = await createOrder(cart);
+
+    if (httpStatusCode === 201) {
+      res.status(httpStatusCode).json(jsonResponse);
+    } else {
+      console.error("Failed to create order. PayPal API error:", jsonResponse);
+      res.status(httpStatusCode).json({ error: `Failed to create order. PayPal API error: ${jsonResponse.error.message}` });
+    }
+  } catch (error) {
+    console.error("Failed to create order:", error);
+    res.status(500).json({ error: "Failed to create order." });
+  }
+});
+
+
+app.post('/api/orders/:orderID/capture', async (req, res) => {
+  try {
+    const { orderID } = req.params;
+    const { jsonResponse, httpStatusCode } = await captureOrder(orderID);
+    res.status(httpStatusCode).json(jsonResponse);
+  } catch (error) {
+    console.error('Failed to create order:', error);
+    res.status(500).json({ error: 'Failed to capture order.' });
+  }
+});
+
+
+
+async function captureOrder(orderID) {
+  const accessToken = await generateAccessToken();
+  const url = `${base}/v2/checkout/orders/${orderID}/capture`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return handleResponse(response);
+}
 
 async function run() {
   try {
@@ -49,7 +159,7 @@ async function run() {
     //patch 
     app.patch("/book/:id",async(req,res)=>{
       const id = req.params.id;
-      //console.log(id);  
+    
       const updateBookData = req.body;
       const filter = {_id: new ObjectId (id)};
      
@@ -99,9 +209,10 @@ async function run() {
     //await client.close();
   }
 }
+
 run().catch(console.dir);
 
-
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Node server listening at http://localhost:${port}/`);
+});
+
