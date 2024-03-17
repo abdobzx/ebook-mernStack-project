@@ -1,0 +1,78 @@
+[debug] [2024-03-17T04:39:51.851Z] ----------------------------------------------------------------------
+[debug] [2024-03-17T04:39:51.859Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\abdo12\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-17T04:39:51.860Z] CLI Version:   13.5.1
+[debug] [2024-03-17T04:39:51.861Z] Platform:      win32
+[debug] [2024-03-17T04:39:51.862Z] Node Version:  v20.11.1
+[debug] [2024-03-17T04:39:51.862Z] Time:          Sun Mar 17 2024 05:39:51 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2024-03-17T04:39:51.863Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-17T04:39:51.871Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-03-17T04:39:52.198Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-17T04:39:52.199Z] > authorizing via signed-in user (abderrahmanbzaiz@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\abdo12\OneDrive\Documents\Ebook_project
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[debug] [2024-03-17T04:39:52.612Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-03-17T04:39:52.613Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-03-17T04:40:41.995Z] Using project from CLI flag: mern-book-inventory-381ec
+[debug] [2024-03-17T04:40:41.997Z] > refreshing access token with scopes: []
+[debug] [2024-03-17T04:40:41.998Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-03-17T04:40:41.998Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-17T04:40:42.219Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-03-17T04:40:42.219Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-17T04:40:42.243Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mern-book-inventory-381ec [none]
+[debug] [2024-03-17T04:40:42.677Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mern-book-inventory-381ec 200
+[debug] [2024-03-17T04:40:42.678Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mern-book-inventory-381ec {"projectId":"mern-book-inventory-381ec","projectNumber":"489574608482","displayName":"Mern book inventory","name":"projects/mern-book-inventory-381ec","resources":{"hostingSite":"mern-book-inventory-381ec"},"state":"ACTIVE","etag":"1_4827f25a-c590-4bf3-a62c-7707e441c793"}
+[info] i  Using project mern-book-inventory-381ec (Mern book inventory) 
+[info] 
+=== Hosting Setup
+[debug] [2024-03-17T04:40:42.695Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mern-book-inventory-381ec [none]
+[debug] [2024-03-17T04:40:42.943Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mern-book-inventory-381ec 200
+[debug] [2024-03-17T04:40:42.943Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mern-book-inventory-381ec {"projectId":"mern-book-inventory-381ec","projectNumber":"489574608482","displayName":"Mern book inventory","name":"projects/mern-book-inventory-381ec","resources":{"hostingSite":"mern-book-inventory-381ec"},"state":"ACTIVE","etag":"1_4827f25a-c590-4bf3-a62c-7707e441c793"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[info] +  Wrote public/404.html 
+[debug] [2024-03-17T04:41:10.325Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2024-03-17T04:41:10.520Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2024-03-17T04:41:10.521Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"10.9.0","browserURL":"https://www.gstatic.com/firebasejs/10.9.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/10.9.0/firebase.tgz"},"live":{"version":"10.9","browserURL":"https://www.gstatic.com/firebasejs/live/10.9/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/10.9/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/10.9.0/firebase-auth/cordova.js","auth/web-extension":"https://www.gstatic.com/firebasejs/10.9.0/firebase-auth/web-extension.js","functions":"https://www.gstatic.com/firebasejs/10.9.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/10.9.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/10.9.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/10.9.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.memory.js"}}
+[info] +  Wrote public/index.html 
+[info] 
+[info] i  Detected a .git folder at C:\Users\abdo12\OneDrive\Documents\Ebook_project 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=43082183&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2024-03-17T04:41:16.685Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2024-03-17T04:41:16.685Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2024-03-17T04:41:17.147Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2024-03-17T04:41:17.148Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2024-03-17T04:41:17.162Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2024-03-17T04:41:17.565Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2024-03-17T04:41:17.566Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"abdobzx","id":61870589,"node_id":"MDQ6VXNlcjYxODcwNTg5","avatar_url":"https://avatars.githubusercontent.com/u/61870589?v=4","gravatar_id":"","url":"https://api.github.com/users/abdobzx","html_url":"https://github.com/abdobzx","followers_url":"https://api.github.com/users/abdobzx/followers","following_url":"https://api.github.com/users/abdobzx/following{/other_user}","gists_url":"https://api.github.com/users/abdobzx/gists{/gist_id}","starred_url":"https://api.github.com/users/abdobzx/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/abdobzx/subscriptions","organizations_url":"https://api.github.com/users/abdobzx/orgs","repos_url":"https://api.github.com/users/abdobzx/repos","events_url":"https://api.github.com/users/abdobzx/events{/privacy}","received_events_url":"https://api.github.com/users/abdobzx/received_events","type":"User","site_admin":false,"name":"abderr.hman bzaiz","company":null,"blog":"","location":"Casablanca","email":null,"hireable":true,"bio":"💡 Exploring the digital frontier one commit at a time.","twitter_username":"abdo_bzaiz","public_repos":21,"public_gists":0,"followers":5,"following":11,"created_at":"2020-03-06T10:54:23Z","updated_at":"2024-03-03T22:00:49Z","private_gists":0,"total_private_repos":4,"owned_private_repos":4,"disk_usage":128480,"collaborators":5,"two_factor_authentication":true,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] +  Success! Logged into GitHub as abdobzx 
+[info] 
