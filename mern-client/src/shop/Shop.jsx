@@ -8,7 +8,7 @@ const Shop = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-books")
+    fetch("http://ebook.sytes.net:3000/all-books")
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, []);
